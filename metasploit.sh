@@ -10,9 +10,9 @@ apt install autoconf bison clang coreutils curl findutils git apr apr-util libff
 echo "####################################"
 echo "Downloading & Extracting....."
 
-curl -L https://github.com/rapid7/metasploit-framework/archive/4.14.28.tar.gz | tar xz
+curl -L https://github.com/rapid7/metasploit-framework/archive/4.15.8.tar.gz | tar xz
 
-cd metasploit-framework-4.14.28
+cd metasploit-framework-4.15.8
 
 sed 's|git ls-files|find -type f|' -i metasploit-framework.gemspec
 
@@ -57,8 +57,7 @@ bundle install -j5
 #Fixing Shebang
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 
-cd metasploit-framework-4.14.28
-
+cd metasploit-framework-4.15.8
 echo "###############################"
 echo "Thanx  To  Vishalbiswani"
 echo "###############################"
