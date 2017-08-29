@@ -17,6 +17,7 @@ cd metasploit-framework-4.16.2
 sed 's|git ls-files|find -type f|' -i metasploit-framework.gemspec
 
 sed -i 's/grpc (1.3.4)/grpc (1.4.1)/g' Gemfile.lock
+sed -i 's/grpc (0.0.1)/grpc (0.0.2)/g' Gemfile.lock
 sed '/rbnacl/d' -i Gemfile.lock
 sed '/rbnacl/d' -i metasploit-framework.gemspec
 echo "\n"
