@@ -10,17 +10,13 @@ apt install autoconf bison clang coreutils curl findutils git apr apr-util libff
 echo "####################################"
 echo "Downloading & Extracting....."
 
-curl -L https://github.com/rapid7/metasploit-framework/archive/4.16.2.tar.gz | tar xz
+curl -L https://github.com/rapid7/metasploit-framework/archive/4.14.28.tar.gz | tar xz
 
-cd metasploit-framework-4.16.2
+cd metasploit-framework-4.14.28
 
 sed 's|git ls-files|find -type f|' -i metasploit-framework.gemspec
 
 sed -i 's/grpc (1.3.4)/grpc (1.4.1)/g' Gemfile.lock
-sed -i 's/grpc (0.0.1)/grpc (0.0.2)/g' Gemfile.lock
-sed '/rbnacl/d' -i Gemfile.lock
-sed '/rbnacl/d' -i metasploit-framework.gemspec
-echo "\n"
 
 #Install bundler
 echo "Bundler is installing"
@@ -40,15 +36,23 @@ gem install grpc-1.4.1.gem
 cd ..
 rm -r grpc-1.4.1
 
+#network
+gem unpack network_interface
+cd network_interface-0.0.1
+sed 's|git ls-files|find -type f|' -i network_interface.gemspec
+curl -L https://wiki.termux.com/images/6/6b/Netifaces.patch -o netifaces.patch
+patch -p1 < netifaces.patch
+gem build network_interface.gemspec
+echo "network_interface is installing........"
+gem install network_interface-0.0.1.gem
+cd ..
+rm -r network_interface-0.0.1
 #Bundle Install
 echo "bundle and all other dependencies are installing......"
 bundle install -j5
 
 #Fixing Shebang
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
-
-cd metasploit-framework-4.16.2
-
 echo "###############################"
 echo "Thanx  To  Vishalbiswani"
 echo "###############################"
