@@ -53,6 +53,5 @@ echo "###############################"
 echo "For  More. Tricks. Visit  At  hax4us.com"
 echo "###############################"
 echo "####################################"
-echo " NOW YOU CAN LAUNCH METASPLOIT BY JUST EXECUTE THE COMMAND :=>  ./msfconsole"
+echo " NOW YOU CAN LAUNCH METASPLOIT BY JUST EXECUTE THE COMMAND :=> msfconsole"
 echo "####################################"
-exec bash
