@@ -10,54 +10,37 @@ apt install autoconf bison clang coreutils curl findutils git apr apr-util libff
 echo "####################################"
 echo "Downloading & Extracting....."
 
-curl -L https://github.com/rapid7/metasploit-framework/archive/4.14.28.tar.gz | tar xz
-
-cd metasploit-framework-4.14.28
-
-sed 's|git ls-files|find -type f|' -i metasploit-framework.gemspec
-
-sed -i 's/grpc (1.3.4)/grpc (1.4.1)/g' Gemfile.lock
-#Install bundler
-echo "Bundler is installing"
+cd $HOME
+curl -LO https://github.com/rapid7/metasploit-framework/archive/4.16.4.tar.gz
+tar -xf $HOME/4.16.4.tar.gz
+mv $HOME/metasploit-framework-4.16.4 $HOME/metasploit-framework
+cd $HOME/metasploit-framework
+sed '/rbnacl/d' -i Gemfile.lock
+sed '/rbnacl/d' -i metasploit-framework.gemspec
 gem install bundler
 
-#Install nokogiri
-echo "nokogiri is installing......"
+
 gem install nokogiri -- --use-system-libraries
-
-#Install Network-Interface
-
-gem unpack network_interface -v 0.0.1
-cd network_interface-0.0.1
-sed 's|git ls-files|find -type f|' -i network_interface.gemspec
-curl -L https://wiki.termux.com/images/6/6b/Netifaces.patch -o netifaces.patch
-patch -p1 < netifaces.patch
-gem build network_interface.gemspec
-echo "network_interface is installing........"
-gem install network_interface-0.0.1.gem
-cd ..
-rm -r network_interface-0.0.1
-
-#Install gems
+ 
+sed 's|grpc (.*|grpc (1.4.1)|g' -i $HOME/metasploit-framework/Gemfile.lock
 gem unpack grpc -v 1.4.1
 cd grpc-1.4.1
 curl -LO https://raw.githubusercontent.com/grpc/grpc/v1.4.1/grpc.gemspec
 curl -L https://wiki.termux.com/images/b/bf/Grpc_extconf.patch -o extconf.patch
 patch -p1 < extconf.patch
 gem build grpc.gemspec
-echo "grpc is installing"
 gem install grpc-1.4.1.gem
 cd ..
 rm -r grpc-1.4.1
 
-#Bundle Install
-echo "bundle and all other dependencies are installing......"
+
+cd $HOME/metasploit-framework
 bundle install -j5
 
-#Fixing Shebang
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
+rm ./modules/auxiliary/gather/http_pdf_authors.rb
+ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
 
-cd metasploit-framework-4.14.28
 
 echo "###############################"
 echo "Thanx  To  Vishalbiswani"
