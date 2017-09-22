@@ -11,18 +11,28 @@ echo "####################################"
 echo "Downloading & Extracting....."
 
 cd $HOME
-curl -LO https://github.com/rapid7/metasploit-framework/archive/4.16.4.tar.gz
-tar -xf $HOME/4.16.4.tar.gz
-mv $HOME/metasploit-framework-4.16.4 $HOME/metasploit-framework
+curl -L https://github.com/rapid7/metasploit-framework/archive/4.14.28.tar.gz | tar xz
+
+mv $HOME/metasploit-framework-4.14.28 $HOME/metasploit-framework
 cd $HOME/metasploit-framework
-sed '/rbnacl/d' -i Gemfile.lock
-sed '/rbnacl/d' -i metasploit-framework.gemspec
+sed 's|git ls-files|find -type f|' -i metasploit-framework.gemspec
+sed -i 's/grpc (1.3.4)/grpc (1.4.1)/g' Gemfile.lock
+
+gem unpack network_interface -v 0.0.1
+cd network_interface-0.0.1
+sed 's|git ls-files|find -type f|' -i network_interface.gemspec
+curl -L https://wiki.termux.com/images/6/6b/Netifaces.patch -o netifaces.patch
+patch -p1 < netifaces.patch
+gem build network_interface.gemspec
+echo "network_interface is installing........"
+gem install network_interface-0.0.1.gem
+cd ..
+rm -r network_interface-0.0.1
 gem install bundler
 
 
 gem install nokogiri -- --use-system-libraries
  
-sed 's|grpc (.*|grpc (1.4.1)|g' -i $HOME/metasploit-framework/Gemfile.lock
 gem unpack grpc -v 1.4.1
 cd grpc-1.4.1
 curl -LO https://raw.githubusercontent.com/grpc/grpc/v1.4.1/grpc.gemspec
