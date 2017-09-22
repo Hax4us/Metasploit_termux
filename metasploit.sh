@@ -29,10 +29,7 @@ gem install network_interface-0.0.1.gem
 cd ..
 rm -r network_interface-0.0.1
 gem install bundler
-
-
-gem install nokogiri -v 1.8.0 -- --use-system-libraries
- 
+gem install nokogiri -v 1.8.0 -- --use-system-libraries 
 gem unpack grpc -v 1.4.1
 cd grpc-1.4.1
 curl -LO https://raw.githubusercontent.com/grpc/grpc/v1.4.1/grpc.gemspec
@@ -42,16 +39,11 @@ gem build grpc.gemspec
 gem install grpc-1.4.1.gem
 cd ..
 rm -r grpc-1.4.1
-
-
 cd $HOME/metasploit-framework
 bundle install -j5
-
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 rm ./modules/auxiliary/gather/http_pdf_authors.rb
 ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
-
-
 echo "###############################"
 echo "Thanx  To  Vishalbiswani"
 echo "###############################"
