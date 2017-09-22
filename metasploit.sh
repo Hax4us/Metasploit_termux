@@ -31,7 +31,7 @@ rm -r network_interface-0.0.1
 gem install bundler
 
 
-gem install nokogiri -- --use-system-libraries
+gem install nokogiri -v 1.8.0 -- --use-system-libraries
  
 gem unpack grpc -v 1.4.1
 cd grpc-1.4.1
