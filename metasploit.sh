@@ -28,7 +28,7 @@ sed 's|grpc (.*|grpc (1.4.1)|g' -i $HOME/metasploit-framework/Gemfile.lock
 gem unpack grpc -v 1.4.1
 cd grpc-1.4.1
 curl -LO https://raw.githubusercontent.com/grpc/grpc/v1.4.1/grpc.gemspec
-curl -L https://wiki.termux.com/images/b/bf/Grpc_extconf.patch -o extconf.patch
+curl -L https://raw.githubusercontent.com/Hax4us/Hax4us.github.io/master/extconf.patch
 patch -p1 < extconf.patch
 gem build grpc.gemspec
 gem install grpc-1.4.1.gem
