@@ -143,7 +143,7 @@ class Msf::Payload::Apk
       raise RuntimeError, "Invalid template: #{apkfile}"
     end
 
-    #keytool = run_cmd("keytool")unless keytool != nilraise RuntimeError, "keytool not found. If it's not in your PATH, please add it."end
+    #keytool=run_cmd("keytool")unlesskeytool!=nilraiseRuntimeError,"keytool not found. iIf it's not in your PATH, please add it."end
 
     #jarsigner = run_cmd("jarsigner")unless jarsigner != nilraise RuntimeError, "jarsigner not found. If it's not in your PATH, please add it."end
 
