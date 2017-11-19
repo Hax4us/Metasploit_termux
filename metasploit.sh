@@ -6,7 +6,7 @@ echo "##############################################"
 echo "WAIT UNTIL INSTALLING............" 
 
 echo "####################################"
-apt install -y autoconf bison clang termux-elf-cleaner coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql
+apt install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner
 echo "####################################"
 apt update && apt upgrade
 echo "Downloading & Extracting....."
@@ -52,7 +52,7 @@ termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.4.0/gems/pg-0
 echo "Creating database"
 
 cd $HOME/metasploit-framework/config
-curl -LO https://Auxilus.github.io/database.yml
+curl -LO https://raw.githubusercontent.com/Hax4us/Metasploit_termux/master/database.yml
 
 mkdir -p $PREFIX/var/lib/postgresql
 initdb $PREFIX/var/lib/postgresql
@@ -61,7 +61,7 @@ pg_ctl -D $PREFIX/var/lib/postgresql start
 createuser msf
 createdb msf_database
 
-rm $msfpath/$msfvar.tar.gz
+rm $HOME/4.16.16.tar.gz
 echo "###############################"
 echo "Thanx  To  Vishalbiswani"
 echo "###############################"
