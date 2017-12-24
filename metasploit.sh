@@ -61,7 +61,6 @@ pg_ctl -D $PREFIX/var/lib/postgresql start
 createuser msf
 createdb msf_database
 
-rm $HOME/4.16.16.tar.gz
 echo "###############################"
 echo "Thanx  To  Vishalbiswani"
 echo "###############################"
