@@ -3,19 +3,22 @@ echo "##############################################"
 echo " I  AM  DEVIL (Lokesh) , PLZ SUBSCRIBE MY CHANNEL"
 echo "##############################################"
 
+# Metasploit version
+msf_ver=4.16.18
+
 echo "WAIT UNTIL INSTALLING............" 
 
 echo "####################################"
-apt install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner
+pkg install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner
 echo "####################################"
-apt update && apt upgrade
+pkg upgrade
 echo "Downloading & Extracting....."
 
 cd $HOME
-curl -LO https://github.com/rapid7/metasploit-framework/archive/4.16.16.tar.gz
-tar -xf $HOME/4.16.16.tar.gz
-mv $HOME/metasploit-framework-4.16.16 $HOME/metasploit-framework
-rm $HOME/4.16.16.tar.gz
+curl -LO https://github.com/rapid7/metasploit-framework/archive/$msf_ver.tar.gz
+tar -xf $HOME/$msf_ver.tar.gz
+mv $HOME/metasploit-framework-$msf_ver $HOME/metasploit-framework
+rm $HOME/$msf_ver.tar.gz
 cd $HOME/metasploit-framework
 sed '/rbnacl/d' -i Gemfile.lock
 sed '/rbnacl/d' -i metasploit-framework.gemspec
