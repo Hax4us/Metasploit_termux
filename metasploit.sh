@@ -6,13 +6,13 @@ echo "##############################################"
 echo "WAIT UNTIL INSTALLING............" 
 
 echo "####################################"
-apt install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner
+apt install -y autoconf bison clang coreutils axel curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner
 echo "####################################"
 apt update && apt upgrade
 echo "Downloading & Extracting....."
 
 cd $HOME
-curl -LO https://github.com/rapid7/metasploit-framework/archive/4.16.16.tar.gz
+axel --alternate https://github.com/rapid7/metasploit-framework/archive/4.16.16.tar.gz
 tar -xf $HOME/4.16.16.tar.gz
 mv $HOME/metasploit-framework-4.16.16 $HOME/metasploit-framework
 rm $HOME/4.16.16.tar.gz
