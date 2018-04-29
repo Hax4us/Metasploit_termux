@@ -12,7 +12,7 @@ apt update && apt upgrade
 echo "Downloading & Extracting....."
 
 cd $HOME
-axel --alternate https://github.com/rapid7/metasploit-framework/archive/4.16.16.tar.gz
+axel --alternate -c https://github.com/rapid7/metasploit-framework/archive/4.16.16.tar.gz
 tar -xf $HOME/metasploit-framework-4.16.16.tar.gz
 mv $HOME/metasploit-framework-4.16.16 $HOME/metasploit-framework
 rm $HOME/4.16.16.tar.gz
