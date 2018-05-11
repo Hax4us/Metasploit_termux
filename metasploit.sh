@@ -15,7 +15,7 @@ cd $HOME
 axel --alternate -c https://github.com/rapid7/metasploit-framework/archive/4.16.16.tar.gz
 tar -xf $HOME/metasploit-framework-4.16.16.tar.gz
 mv $HOME/metasploit-framework-4.16.16 $HOME/metasploit-framework
-rm $HOME/4.16.16.tar.gz
+rm $HOME/metasploit-framework-4.16.16.tar.gz
 cd $HOME/metasploit-framework
 sed '/rbnacl/d' -i Gemfile.lock
 sed '/rbnacl/d' -i metasploit-framework.gemspec
@@ -46,8 +46,8 @@ fi
 if [ -e $PREFIX/bin/msfvenom ];then
 	rm $PREFIX/bin/msfvenom
 fi
-ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
-ln -s $HOME/metasploit-framework/msfvenom /data/data/com.termux/files/usr/bin/
+ln -sf $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
+ln -sf $HOME/metasploit-framework/msfvenom /data/data/com.termux/files/usr/bin/
 termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.4.0/gems/pg-0.20.0/lib/pg_ext.so
 echo "Creating database"
 
