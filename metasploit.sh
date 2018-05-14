@@ -11,8 +11,14 @@ echo "####################################"
 apt update && apt upgrade
 echo "Downloading & Extracting....."
 
+# Remove Old Tars
+find $HOME -name "*.16.tar.gz" -type f
+
+# Remove Old Folders
+find $HOME -name "metasploit*" -type d
+
 cd $HOME
-axel --alternate -c https://github.com/rapid7/metasploit-framework/archive/4.16.16.tar.gz
+axel --alternate https://github.com/rapid7/metasploit-framework/archive/4.16.16.tar.gz
 tar -xf $HOME/metasploit-framework-4.16.16.tar.gz
 mv $HOME/metasploit-framework-4.16.16 $HOME/metasploit-framework
 rm $HOME/metasploit-framework-4.16.16.tar.gz
