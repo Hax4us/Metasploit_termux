@@ -21,6 +21,8 @@ sed '/rbnacl/d' -i Gemfile.lock
 sed '/rbnacl/d' -i metasploit-framework.gemspec
 gem install bundler
 sed 's|nokogiri (1.*)|nokogiri (1.8.0)|g' -i Gemfile.lock
+# Many phones are claiming libxml2 not found error
+ln -sf $PREFIX/include/libxml2/libxml $PREFIX/include/
 
 gem install nokogiri -v 1.8.0 -- --use-system-libraries
  
