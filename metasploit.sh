@@ -12,10 +12,10 @@ apt update && apt upgrade
 echo "Downloading & Extracting....."
 
 # Remove Old Tars
-find $HOME -name "*.16.tar.gz" -type f
+find $HOME -name "*.16.tar.gz" -type f -delete
 
 # Remove Old Folders
-find $HOME -name "metasploit*" -type d
+find $HOME -name "metasploit*" -type d -delete
 
 cd $HOME
 axel --alternate https://github.com/rapid7/metasploit-framework/archive/4.16.16.tar.gz
