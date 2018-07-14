@@ -3,7 +3,7 @@
 # Remove Old Tars if exist
 find $HOME -name "*17.1.tar.gz" -type f -delete
 # Remove  Old Folder if exist 
-find $HOME -name "metasploit*" -type d -delete
+find $HOME -name "metasploit*" -type d -exec rm -rf {} \;
 # Many phones are claiming libxml2 not found error
 ln -sf $PREFIX/include/libxml2/libxml $PREFIX/include/
 
