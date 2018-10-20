@@ -9,7 +9,7 @@ ln -sf $PREFIX/include/libxml2/libxml $PREFIX/include/
 
 
 cwd=$(pwd)
-msfvar=4.17.1
+msfvar=4.17.9
 msfpath='/data/data/com.termux/files/home'
 
 apt update
