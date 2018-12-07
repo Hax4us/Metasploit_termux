@@ -4,8 +4,6 @@
 find $HOME -name "*17.1.tar.gz" -type f -delete
 # Remove  Old Folder if exist 
 find $HOME -name "metasploit*" -type d -exec rm -rf {} \;
-# Many phones are claiming libxml2 not found error
-ln -sf $PREFIX/include/libxml2/libxml $PREFIX/include/
 
 
 cwd=$(pwd)
@@ -14,6 +12,8 @@ msfpath='/data/data/com.termux/files/home'
 
 apt update
 apt install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner
+# Many phones are claiming libxml2 not found error
+ln -sf $PREFIX/include/libxml2/libxml $PREFIX/include/
 
 cd $msfpath
 curl -LO https://github.com/rapid7/metasploit-framework/archive/$msfvar.tar.gz
