@@ -37,6 +37,7 @@ else
 fi
 
 cd $msfpath/metasploit-framework
+gem update --system
 bundle install -j5
 
 echo "Gems installed"
