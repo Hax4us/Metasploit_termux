@@ -1,7 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# Remove Old Tars if exist
-find $HOME -name "*17.1.tar.gz" -type f -delete
 # Remove  Old Folder if exist 
 find $HOME -name "metasploit*" -type d -exec rm -rf {} \;
 
