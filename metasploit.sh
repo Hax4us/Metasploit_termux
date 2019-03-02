@@ -42,8 +42,8 @@ echo "Gems installed"
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 rm ./modules/auxiliary/gather/http_pdf_authors.rb
 
-ln -sf $msfpath/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
-ln -sf $msfpath/metasploit-framework/msfvenom /data/data/com.termux/files/usr/bin/
+#ln -sf $msfpath/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
+#ln -sf $msfpath/metasploit-framework/msfvenom /data/data/com.termux/files/usr/bin/
 
 termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.6.0/gems/pg-0.20.0/lib/pg_ext.so
 echo "Creating database"
@@ -61,5 +61,42 @@ createuser msf
 createdb msf_database
 
 rm $msfpath/$msfvar.tar.gz
+
+cat <<EOM>> ${PREFIX}/bin/msfconsole
+#!${PREFIX}/bin/sh
+
+SCRIPT_NAME=$(basename "$0")
+METASPLOIT_PATH="@TERMUX_PREFIX@/opt/metasploit-framework"
+
+# Fix ruby bigdecimal extensions linking error.
+case "$(uname -m)" in
+	aarch64)
+		export LD_PRELOAD="@TERMUX_PREFIX@/lib/ruby/2.6.0/aarch64-linux-android/bigdecimal.so:$LD_PRELOAD"
+		;;
+	arm*)
+		export LD_PRELOAD="@TERMUX_PREFIX@/lib/ruby/2.6.0/arm-linux-androideabi/bigdecimal.so:$LD_PRELOAD"
+		;;
+	i686)
+		export LD_PRELOAD="@TERMUX_PREFIX@/lib/ruby/2.6.0/i686-linux-android/bigdecimal.so:$LD_PRELOAD"
+		;;
+	x86_64)
+		export LD_PRELOAD="@TERMUX_PREFIX@/lib/ruby/2.6.0/x86_64-linux-android/bigdecimal.so:$LD_PRELOAD"
+		;;
+	*)
+		;;
+esac
+
+case "$SCRIPT_NAME" in
+	msfconsole|msfvenom)
+		exec ruby "$METASPLOIT_PATH/$SCRIPT_NAME" "$@"
+		;;
+	*)
+		echo "[!] Unknown Metasploit command '$SCRIPT_NAME'."
+		exit 1
+		;;
+esac
+EOM
+
+ln -sf $(which msfconsole) ${PREFIX}/bin/msfvenom
 
 echo "you can directly use msfvenom or msfconsole rather than ./msfvenom or ./msfconsole."
