@@ -65,7 +65,7 @@ rm $msfpath/$msfvar.tar.gz
 cat <<EOM>> ${PREFIX}/bin/msfconsole
 #!${PREFIX}/bin/sh
 
-SCRIPT_NAME=$(basename "$0")
+SCRIPT_NAME=\$(basename "\$0")
 METASPLOIT_PATH="${HOME}/metasploit-framework"
 
 # Fix ruby bigdecimal extensions linking error.
