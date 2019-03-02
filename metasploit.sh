@@ -42,8 +42,8 @@ echo "Gems installed"
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 rm ./modules/auxiliary/gather/http_pdf_authors.rb
 
-ln -sf $msfpath/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
-ln -sf $msfpath/metasploit-framework/msfvenom /data/data/com.termux/files/usr/bin/
+#ln -sf $msfpath/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
+#ln -sf $msfpath/metasploit-framework/msfvenom /data/data/com.termux/files/usr/bin/
 
 termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.6.0/gems/pg-0.20.0/lib/pg_ext.so
 echo "Creating database"
@@ -61,5 +61,7 @@ createuser msf
 createdb msf_database
 
 rm $msfpath/$msfvar.tar.gz
+
+cd ${PREFIX}/bin && curl -LO https://hax4us.github.io/files/msfconsole && chmod +x msfconsole
 
 echo "you can directly use msfvenom or msfconsole rather than ./msfvenom or ./msfconsole."
