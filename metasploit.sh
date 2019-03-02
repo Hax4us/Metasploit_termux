@@ -66,7 +66,7 @@ cat <<EOM>> ${PREFIX}/bin/msfconsole
 #!${PREFIX}/bin/sh
 
 SCRIPT_NAME=$(basename "$0")
-METASPLOIT_PATH="@TERMUX_PREFIX@/opt/metasploit-framework"
+METASPLOIT_PATH="${HOME}/metasploit-framework"
 
 # Fix ruby bigdecimal extensions linking error.
 case "$(uname -m)" in
