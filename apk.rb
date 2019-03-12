@@ -242,7 +242,7 @@ class Msf::Payload::Apk
     fix_manifest(tempdir, package, classes['MainService'], classes['MainBroadcastReceiver'])
 
     print_status "Rebuilding #{apkfile} with meterpreter injection as #{injected_apk} and yes it's me guys...your friend Lokesh (Hax4Us) thanx for using my tool TMUX-BUNCH \n"
-print_status "Note :- Tmux-Bunch is my tool but this apk.rb script is written by Metasploit team and I am just a modifier of this script for binding payload in termux"
+print_status "Note :- this apk.rb script is written by Metasploit team (almost by my friend tim) and I am just a modifier of this script for binding payload in termux"
     run_cmd("apktool b --aapt $PREFIX/bin/aapt -o #{injected_apk} #{tempdir}/original")
     unless File.readable?(injected_apk)
       raise RuntimeError, "Unable to rebuild apk with apktool"
@@ -254,7 +254,7 @@ print_status "Note :- Tmux-Bunch is my tool but this apk.rb script is written by
     #run_cmd("zipalign 4 #{injected_apk} #{aligned_apk}")
 
     #= File.read(aligned_apk)
-run_cmd("cp #{tempdir}/output.apk $HOME/Tmux-Bunch/unsign")
+run_cmd("cp #{tempdir}/output.apk $HOME/Tmux-Bunch-Reborn/unsign")
     run_cmd("rm -rf #{tempdir}")
     #outputapk
   end
