@@ -171,9 +171,9 @@ class Msf::Payload::Apk
     FileUtils.cp apkfile, "#{tempdir}/original.apk"
 
     print_status "Decompiling original APK..\n"
-    run_cmd("apktool d #{tempdir}/original.apk -o #{tempdir}/original")
+    run_cmd("apktool d -f -r --force-manifest #{tempdir}/original.apk -o #{tempdir}/original")
     print_status "Decompiling payload APK..\n"
-    run_cmd("apktool d #{tempdir}/payload.apk -o #{tempdir}/payload")
+    run_cmd("apktool d -f -r --force-manifest #{tempdir}/payload.apk -o #{tempdir}/payload")
 
     amanifest = parse_manifest("#{tempdir}/original/AndroidManifest.xml")
 
