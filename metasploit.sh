@@ -9,7 +9,7 @@ msfvar=4.17.40
 msfpath='/data/data/com.termux/files/home'
 
 apt update
-apt install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner
+apt install -y libiconv-dev zlib-dev autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner
 # Many phones are claiming libxml2 not found error
 ln -sf $PREFIX/include/libxml2/libxml $PREFIX/include/
 
@@ -23,18 +23,19 @@ sed '/rbnacl/d' -i Gemfile.lock
 sed '/rbnacl/d' -i metasploit-framework.gemspec
 gem install bundler
 
-isNokogiri=$(gem list nokogiri -i)
+#isNokogiri=$(gem list nokogiri -i)
 
-sed 's|nokogiri (1.*)|nokogiri (1.8.0)|g' -i Gemfile.lock
+#sed 's|nokogiri (1.*)|nokogiri (1.8.0)|g' -i Gemfile.lock
 
-if [ $isNokogiri == "false" ];
-then
-      gem install nokogiri -v '1.8.0' -- --use-system-libraries
-else
-	echo "nokogiri already installed"
-fi
+#if [ $isNokogiri == "false" ];
+#then
+#      gem install nokogiri -v '1.8.0' -- --use-system-libraries
+#else
+#	echo "nokogiri already installed"
+#fi
 
-cd $msfpath/metasploit-framework
+cd $msfpath/metasploit-framework && rm Gentile.lock
+curl -LO https://hax4us.github.io/files/Gemfile.lock
 gem update --system
 bundle install -j5
 
