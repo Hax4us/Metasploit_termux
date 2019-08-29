@@ -34,7 +34,7 @@ gem install bundler
 #	echo "nokogiri already installed"
 #fi
 
-cd $msfpath/metasploit-framework && rm Gentile.lock
+cd $msfpath/metasploit-framework && rm Gemfile.lock
 curl -LO https://hax4us.github.io/files/Gemfile.lock
 gem update --system
 bundle install -j5
