@@ -36,6 +36,7 @@ gem install bundler
 
 cd $msfpath/metasploit-framework && rm Gemfile.lock
 curl -LO https://hax4us.github.io/files/Gemfile.lock
+bundle update --bundler
 gem update --system
 bundle install -j5
 
