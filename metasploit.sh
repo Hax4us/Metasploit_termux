@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 # Remove  Old Folder if exist 
-find $HOME -name "metasploit*" -type d -exec rm -rf {} \;
+find $HOME -name "metasploit-*" -type d -exec rm -rf {} \;
 
 
 cwd=$(pwd)
