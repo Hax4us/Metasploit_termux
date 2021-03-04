@@ -64,7 +64,8 @@ fi
 
 rm $msfpath/$msfvar.tar.gz
 
-cd ${PREFIX}/bin && curl -LO https://hax4us.github.io/files/msfconsole && chmod +x msfconsole
+cd ${PREFIX}/bin && curl -LO  https://raw.githubusercontent.com/Hax4us/Hax4us.github.io/master/files/msfconsole && chmod +x msfconsole
+
 ln -sf $(which msfconsole) $PREFIX/bin/msfvenom
 
 echo "you can directly use msfvenom or msfconsole rather than ./msfvenom or ./msfconsole."
