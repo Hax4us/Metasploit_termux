@@ -5,7 +5,7 @@ find $HOME -name "metasploit-*" -type d -exec rm -rf {} \;
 
 
 cwd=$(pwd)
-msfvar=6.0.31
+msfvar=6.0.33
 msfpath='/data/data/com.termux/files/home'
 
 apt update && apt upgrade
