@@ -8,7 +8,7 @@ cwd=$(pwd)
 msfvar=6.0.33
 msfpath='/data/data/com.termux/files/home'
 
-apt update && apt upgrade
+apk update && apk upgrade
 # Temporary 
 apk del ruby
 apk add libiconv zlib autoconf bison clang coreutils curl findutils git apr apr-util libffi libgmp libpcap postgresql readline libsqlite openssl libtool libxml2 libxslt ncurses pkg-config wget make ruby2 libgrpc termux-tools ncurses-utils ncurses unzip zip tar termux-elf-cleaner
