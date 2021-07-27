@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# Remove  Old Folder if exist 
+# Remove  Old Folder if exist
 find $HOME -name "metasploit-*" -type d -exec rm -rf {} \;
 
 
@@ -9,7 +9,7 @@ msfvar=6.0.33
 msfpath='/data/data/com.termux/files/home'
 
 apt update && apt upgrade
-# Temporary 
+# Temporary
 apt remove ruby -y
 apt install -y libiconv zlib autoconf bison clang coreutils curl findutils git apr apr-util libffi libgmp libpcap postgresql readline libsqlite openssl libtool libxml2 libxslt ncurses pkg-config wget make ruby2 libgrpc termux-tools ncurses-utils ncurses unzip zip tar termux-elf-cleaner
 # Many phones are claiming libxml2 not found error
@@ -33,7 +33,7 @@ update_rubygems
 # Install bundler
 gem install --no-document --verbose bundler:1.17.3
 
-# Installing all gems 
+# Installing all gems
 bundle config build.nokogiri --use-system-libraries
 bundle install -j3
 echo "Gems installed"
