@@ -1,0 +1,13 @@
+#!/data/data/com.termux/files/usr/bin/sh
+SCRIPT_NAME=$(basename "$0")
+METASPLOIT_PATH="${HOME}/metasploit-framework"
+
+case "$SCRIPT_NAME" in
+	msfconsole|msfvenom)
+		exec ruby "$METASPLOIT_PATH/$SCRIPT_NAME" "$@"
+		;;
+	*)
+		echo "[!] Unknown Metasploit command '$SCRIPT_NAME'."
+		exit 1
+		;;
+esac

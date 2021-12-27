@@ -5,37 +5,37 @@ find $HOME -name "metasploit-*" -type d -exec rm -rf {} \;
 
 
 cwd=$(pwd)
-msfvar=6.0.33
+msfvar=6.1.21
 msfpath='/data/data/com.termux/files/home'
 
 apt update && apt upgrade
-# Temporary 
-apt remove ruby -y
-apt install -y libiconv zlib autoconf bison clang coreutils curl findutils git apr apr-util libffi libgmp libpcap postgresql readline libsqlite openssl libtool libxml2 libxslt ncurses pkg-config wget make ruby2 libgrpc termux-tools ncurses-utils ncurses unzip zip tar termux-elf-cleaner
+
+apt install -y libiconv zlib autoconf bison clang coreutils curl findutils git apr apr-util libffi libgmp libpcap postgresql readline libsqlite openssl libtool libxml2 libxslt ncurses pkg-config wget make ruby libgrpc termux-tools ncurses-utils ncurses unzip zip tar termux-elf-cleaner
 # Many phones are claiming libxml2 not found error
 ln -sf $PREFIX/include/libxml2/libxml $PREFIX/include/
 
 cd $msfpath
-curl -LO https://github.com/rapid7/metasploit-framework/archive/$msfvar.tar.gz
+curl -LO https://github.com/rapid7/metasploit-framework/archive/refs/tags/$msfvar.tar.gz
 
 tar -xf $msfpath/$msfvar.tar.gz
 mv $msfpath/metasploit-framework-$msfvar $msfpath/metasploit-framework
 cd $msfpath/metasploit-framework
 
 # Update rubygems-update
-if [ "$(gem list -i rubygems-update 2>/dev/null)" = "false" ]; then
-	gem install --no-document --verbose rubygems-update
-fi
+#if [ "$(gem list -i rubygems-update 2>/dev/null)" = "false" ]; then
+#	gem install --no-document --verbose rubygems-update
+#fi
 
 # Update rubygems
-update_rubygems
+#update_rubygems
 
 # Install bundler
-gem install --no-document --verbose bundler:1.17.3
+#gem install --no-document --verbose bundler:1.17.3
+gem install bundler
 
 # Installing all gems 
-bundle config build.nokogiri --use-system-libraries
-bundle install -j3
+#bundle config build.nokogiri --use-system-libraries
+bundle install 
 echo "Gems installed"
 
 # Some fixes
@@ -64,7 +64,7 @@ fi
 
 rm $msfpath/$msfvar.tar.gz
 
-cd ${PREFIX}/bin && curl -LO  https://raw.githubusercontent.com/Hax4us/Hax4us.github.io/master/files/msfconsole && chmod +x msfconsole
+cd ${PREFIX}/bin && curl -LO https://raw.githubusercontent.com/Hax4us/Metasploit_termux/master/msfconsole && chmod +x msfconsole
 
 ln -sf $(which msfconsole) $PREFIX/bin/msfvenom
 
