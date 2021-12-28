@@ -35,6 +35,7 @@ gem install bundler
 
 # Installing all gems 
 #bundle config build.nokogiri --use-system-libraries
+gem install nokogiri -v 1.12.5 -- --use-system-libraries
 bundle install 
 echo "Gems installed"
 
